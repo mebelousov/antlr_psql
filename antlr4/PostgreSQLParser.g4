@@ -1275,31 +1275,60 @@ func_sig_list
 // TODO: rename prefix notation type casts
 type_literal
     : ABSTIME
+    | BIGINT
+    | BIGSERIAL
+    | BIT
+    | BIT VARYING
     | BOOL
+    | BOOLEAN
     | BOX
+    | BYTEA
+    | CHARACTER VARYING
+    | CHARACTER
+    | CIDR
+    | CIRCLE
     | DATE
+    | DOUBLE PRECISION
     | FLOAT4
     | FLOAT8
+    | INET
+    | INT2
+    | INT4
+    | INT8
+    | INT
+    | INTEGER
     | INTERVAL
     | JSON
     | JSONB
     | LINE
-    | POINT
+    | LSEG
+    | MACADDR
+    | MONEY
     | NAME
     | NUMERIC
+    | PATH
+    | PG_LSN
+    | POINT
+    | POINT
+    | POLYGON
+    | REAL
+    | RELTIME
+    | SERIAL
+    | SMALLINT
+    | SMALLSERIAL
     | TEXT
-    | TIMESTAMP ((WITH | AT) TIME ZONE)?
-    | TIMESTAMP (WITHOUT TIME ZONE)?
-    | TIMESTAMP_TZ
     | TIME (WITH TIME ZONE)?
     | TIME (WITHOUT TIME ZONE)?
     | TIME_TZ
-    | INT
-    | INT2
-    | INT4
-    | INT8
-    | INTERVAL
-    | RELTIME
+    | TIMESTAMP ((WITH | AT) TIME ZONE)?
+    | TIMESTAMP (WITHOUT TIME ZONE)?
+    | TIMESTAMP_TZ
+    | TSQUERY
+    | TSVECTOR
+    | TXID_SNAPSHOT
+    | UUID
+    | VARCHAR
+    | XML
     ;
 
 type_literal_list
@@ -1351,8 +1380,9 @@ table_name_
 // TODO: can we remove in favor of just 'identifier' and the array case?
 // TODO: aggregate calls are mistakenly taken for type conversions: e.g : SUM(a) resolves to type of SUM
 type
-    : type_literal
-    | VARCHAR OPEN_PAREN INTEGER_LITERAL? CLOSE_PAREN
+    : type_literal OPEN_BRACKET INTEGER_LITERAL? CLOSE_BRACKET
+    | type_literal OPEN_PAREN INTEGER_LITERAL? CLOSE_PAREN
+    | type_literal
     | NUMERIC OPEN_PAREN (expr (COMMA expr)*)? CLOSE_PAREN
     | identifier // TODO: is this necessary?
     | type OPEN_BRACKET INTEGER_LITERAL? CLOSE_BRACKET
