@@ -785,7 +785,14 @@ create_table_stmt
     ;
 
 create_table_as_stmt
-    : todo_implement
+    : CREATE ((GLOBAL | LOCAL)? (TEMPORARY| TEMP)? | UNLOGGED)? TABLE (IF NOT EXISTS)?
+    output_name=table_name_
+    (OPEN_PAREN name_list CLOSE_PAREN)?
+    ((WITH OPEN_PAREN options_list CLOSE_PAREN) | (WITH OIDS) | (WITHOUT OIDS))?
+    (ON COMMIT (PRESERVE ROWS | DELETE ROWS | DROP))?
+    (TABLESPACE tablespace=identifier)?
+    AS select_stmt
+    (WITH NO? DATA)?
     ;
 
 create_tablespace_stmt

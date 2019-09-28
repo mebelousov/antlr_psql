@@ -656,6 +656,7 @@ UNION                                : U N I O N;
 UNIQUE                               : U N I Q U E;
 UNKNOWN                              : U N K N O W N;
 UNLISTEN                             : U N L I S T E N;
+UNLOGGED                             : U N L O G G E D;
 UNNAMED                              : U N N A M E D;
 UNNEST                               : U N N E S T;
 UNTIL                                : U N T I L;
