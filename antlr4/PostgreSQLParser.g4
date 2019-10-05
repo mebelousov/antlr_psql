@@ -759,7 +759,11 @@ create_sequence_stmt
     ;
 
 create_server_stmt
-    : todo_implement
+    : CREATE SERVER (IF NOT EXISTS)? server_name=identifier
+    (TYPE server_type=name_)?
+    (VERSION server_version=name_)?
+    FOREIGN DATA WRAPPER fdw_name=identifier
+    (OPTIONS option=identifier value=name_ (COMMA option=identifier value=name_)? )?
     ;
 
 create_statistics_stmt
@@ -779,7 +783,10 @@ create_table_as_stmt
     ;
 
 create_tablespace_stmt
-    : todo_implement
+    : CREATE TABLESPACE tablespace_name=identifier
+    (OWNER (new_owner=identifier | CURRENT_USER | SESSION_USER) )?
+    LOCATION diretory=name_
+    (WITH option_list )?
     ;
 
 create_text_search_config_stmt
